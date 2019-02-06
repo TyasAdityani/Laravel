@@ -3,6 +3,22 @@
 @section('content')
 <h1>User</h1>
 <hr>
+
+@if(session('result') == 'success')
+<div class="alert alert-success alert-dismissiable fade show">
+	<strong>Update ! </strong> Berhasil diupdate.
+	<button type="button" class="close" data-dismiss="alert">
+		&times;
+	</button>
+</div>
+@elseif(session('result') == 'fail')
+<div class="alert alert-danger alert-dismissiable fade show">
+	<strong>Failed ! </strong> Gagal diupdate.
+	<button type="button" class="close" data-dismiss="alert">
+		&times;
+	</button>
+</div>
+@endif
 <div class="row">
 	<div class="col-md-6">
 		<form method="post" action="{{ route('admin.user.setting') }}">

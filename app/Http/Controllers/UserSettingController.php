@@ -22,6 +22,27 @@ class UserSettingController extends Controller
     		'password'=>'nullable|min:6',
     		'repassword'=>'same:password',
     	])->validate();
-    	return "Fungsi Update";
+
+    if (!empty($req->password)) {
+        $field = [
+            'name'=>$req->name,
+            'email'=>$req->email,
+            'password'=>bcrypt($req->password),
+        ];
+    }else {
+        $field = [
+            'name'=>$req->name,
+            'email'=>$req->email,
+        ];
+    }
+
+        $result = User::where('id',$id)->update($field);
+        
+        if ($result) {
+            return back()->with('result','success');
+        }else {
+            return back()->with('result','fail');
+        }
+
     }
 }
