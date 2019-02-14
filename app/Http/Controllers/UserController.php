@@ -20,6 +20,14 @@ class UserController extends Controller
     }
     public function save(Request $req)
     {
+        \Validator::make($req->all(),[
+            'name'=>'required|between:3,100',
+            'email'=>'required|unique:users,email',
+            'password'=>'required|min:6',
+            'repassword'=>'required|same:password',
+            'akses'=>'required',
+        ])->validate();
+
     	return 'Fungsi Save';
     }
 }
