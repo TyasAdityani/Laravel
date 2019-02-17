@@ -82,4 +82,14 @@ class UserController extends Controller
             return back()->with('result','fail');
         }
     }
+
+    public function delete(Request $req)
+    {
+        $result = User::find($req->id);
+        if( $result->delete() ){
+            return back()->with('result','delete');
+        } else{
+            return back()->with('result','fail-delete');
+        }
+    }
 }
