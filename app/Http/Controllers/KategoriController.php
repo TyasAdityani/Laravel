@@ -34,4 +34,14 @@ class KategoriController extends Controller
             return back()->with('result','fail')->withInput();
         }
     }
+    public function edit($id)
+    {
+        $data = Kategori::where('id',$id)->first();
+        return view('admin.pages.kategori.edit',['rc'=>$data]);
+    }
+
+    public function update(Request $req)
+    {
+        return 'Fungsi Update';
+    }
 }
